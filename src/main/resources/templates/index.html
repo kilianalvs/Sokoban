@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sokoban</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+    </script>
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <script>
+        document.addEventListener('keypress', (event) => {
+            console.log(event);
+        });
+    </script>
+</head>
+<body>
+
+<div th:fragment="map" id="map">
+    <div th:each="line : ${squares}" class="line">
+        <th:block th:each="block : ${line}" style="width: 20px; height:20px; display:inline-block">
+                <div class="square" th:classappend="${block}"></div>
+            </th:block>
+        </th:block>
+    </div>
+</div>
+
+<form th:action="@{/}" method="post" class="controls">
+    <button state="submit" th:name="move" th:value="Up">Top</button>
+    <button state="submit" th:name="move" th:value="Down">Bottom</button>
+    <button state="submit" th:name="move" th:value="Left">Left</button>
+    <button state="submit" th:name="move" th:value="Right">Right</button>
+</form>
+</body>
+</html>
